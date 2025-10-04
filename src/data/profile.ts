@@ -32,63 +32,81 @@ export interface Skill {
 }
 
 export const profile: Profile = {
-  name: 'Your Name',
-  title: 'Software Engineer',
-  bio: 'Passionate software engineer with expertise in building modern web applications. I love creating elegant solutions to complex problems and sharing knowledge with the community.',
-  email: 'your.email@example.com',
+  name: 'Matthieu Schmidt',
+  title: 'Senior Software Engineer',
+  bio: 'Passionate software engineer with expertise in building modern web applications and distributed systems. I love creating elegant solutions to complex problems and sharing knowledge with the developer community.',
+  email: 'matthieu.schmidt@example.com',
   links: {
-    github: 'https://github.com/yourusername',
-    gitlab: 'https://gitlab.com/yourusername',
-    linkedin: 'https://linkedin.com/in/yourusername',
+    github: 'https://github.com/mschmidt',
+    gitlab: 'https://gitlab.com/mschmidt',
+    linkedin: 'https://linkedin.com/in/matthieu-schmidt',
   },
 };
 
 export const education: Education[] = [
   {
-    degree: 'Master of Computer Science',
-    institution: 'University Name',
+    degree: 'Master of Science in Computer Engineering',
+    institution: 'Technical University of Excellence',
     period: '2018 - 2020',
-    description: 'Specialized in Software Engineering and Artificial Intelligence',
+    description: 'Specialized in Software Architecture, Distributed Systems, and Machine Learning',
   },
   {
-    degree: 'Bachelor of Computer Science',
-    institution: 'University Name',
+    degree: 'Bachelor of Science in Computer Science',
+    institution: 'University of Technology',
     period: '2015 - 2018',
+    description: 'Foundation in algorithms, data structures, and software engineering principles',
   },
 ];
 
 export const experience: Experience[] = [
   {
     title: 'Senior Software Engineer',
-    company: 'Tech Company',
+    company: 'Tech Innovation Corp',
     period: '2022 - Present',
     description: [
-      'Led development of microservices architecture',
-      'Mentored junior developers',
-      'Improved application performance by 40%',
+      'Lead development of microservices architecture serving 10M+ users',
+      'Mentor junior developers and conduct code reviews',
+      'Improved application performance by 60% through optimization',
+      'Implemented CI/CD pipelines reducing deployment time by 80%',
     ],
   },
   {
-    title: 'Software Engineer',
-    company: 'Startup Inc',
+    title: 'Full Stack Developer',
+    company: 'Digital Solutions Inc',
     period: '2020 - 2022',
     description: [
-      'Built full-stack web applications using React and Node.js',
-      'Implemented CI/CD pipelines',
-      'Collaborated with cross-functional teams',
+      'Built responsive web applications using React, TypeScript, and Node.js',
+      'Designed and implemented RESTful APIs and GraphQL endpoints',
+      'Collaborated with cross-functional teams in Agile environment',
+      'Reduced bug reports by 40% through comprehensive testing strategies',
+    ],
+  },
+  {
+    title: 'Software Developer',
+    company: 'StartupTech',
+    period: '2018 - 2020',
+    description: [
+      'Developed full-stack web applications from concept to deployment',
+      'Integrated third-party APIs and payment processing systems',
+      'Optimized database queries improving response times by 50%',
+      'Participated in technical architecture decisions',
     ],
   },
 ];
 
 export const skills: Skill[] = [
   { name: 'JavaScript/TypeScript', level: 95, category: 'technical' },
-  { name: 'React', level: 90, category: 'technical' },
-  { name: 'Node.js', level: 85, category: 'technical' },
-  { name: 'Python', level: 80, category: 'technical' },
-  { name: 'Docker/Kubernetes', level: 75, category: 'technical' },
-  { name: 'AWS/Cloud', level: 70, category: 'technical' },
-  { name: 'Problem Solving', level: 95, category: 'soft' },
-  { name: 'Team Leadership', level: 85, category: 'soft' },
-  { name: 'Communication', level: 90, category: 'soft' },
-  { name: 'Adaptability', level: 88, category: 'soft' },
+  { name: 'React/Next.js', level: 92, category: 'technical' },
+  { name: 'Node.js/Express', level: 88, category: 'technical' },
+  { name: 'Python/Django', level: 85, category: 'technical' },
+  { name: 'PostgreSQL/MongoDB', level: 82, category: 'technical' },
+  { name: 'AWS/Docker/Kubernetes', level: 78, category: 'technical' },
+  { name: 'GraphQL/REST APIs', level: 90, category: 'technical' },
+  { name: 'Git/CI/CD', level: 87, category: 'technical' },
+  { name: 'Problem Solving', level: 96, category: 'soft' },
+  { name: 'Team Leadership', level: 88, category: 'soft' },
+  { name: 'Communication', level: 92, category: 'soft' },
+  { name: 'Project Management', level: 85, category: 'soft' },
+  { name: 'Mentoring', level: 89, category: 'soft' },
+  { name: 'Adaptability', level: 91, category: 'soft' },
 ];
