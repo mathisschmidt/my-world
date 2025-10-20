@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getEntryBySlug, getCollection } from 'astro:content';
-import {articles, fromAstroMdx} from '../../data/articles';
+import { getCollection } from 'astro:content';
+import {fromAstroMdx} from '../../data/articles';
 
 export async function getStaticPaths() {
     const allArticles = await getCollection('articles');
@@ -23,6 +23,9 @@ const formatDate = (dateString: string) => {
     day: 'numeric' 
   });
 };
+
+// Import global article styles (Tailwind @apply file)
+import "../../styles/article.css";
 ---
 
 <Layout title={`${processedArticle.title} | Articles`}>
@@ -83,7 +86,7 @@ const formatDate = (dateString: string) => {
     <section class="py-16 px-6">
       <div class="max-w-3xl mx-auto">
         <article class="prose prose-invert prose-lg prose-cyan max-w-none">
-          <div class="article-content">
+          <div class="article-content article-prose">
             <Content />
           </div>
         </article>
@@ -192,19 +195,5 @@ const formatDate = (dateString: string) => {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-  }
-
-  .article-content h1,
-  .article-content h2,
-  .article-content h3 {
-    scroll-margin-top: 100px;
-  }
-
-  .article-content pre {
-    position: relative;
-  }
-
-  .article-content pre code {
-    font-family: 'JetBrains Mono', monospace;
   }
 </style>
