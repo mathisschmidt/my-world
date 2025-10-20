@@ -1,0 +1,72 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro site
+        run: npm run build
+
+      - name: Deploy to server
+        if: success()
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          script_stop: true
+          script: |
+            # Navigate to the project directory
+            cd ${{ secrets.SERVER_PATH || '/var/www/portfolio' }}
+            
+            # Pull latest changes
+            git pull origin main
+            
+            # Install dependencies
+            npm ci
+            
+            # Build the project
+            npm run build
+            
+            # Copy build files to web directory
+            sudo cp -r dist/* /var/www/html/
+            
+            # Set proper permissions
+            sudo chown -R www-data:www-data /var/www/html/
+            sudo chmod -R 755 /var/www/html/
+            
+            # Restart web server (optional)
+            sudo systemctl reload nginx
+
+      - name: Notify deployment success
+        if: success()
+        run: |
+          echo "✅ Deployment completed successfully!"
+          echo "🚀 Your portfolio is now live!"
+
+      - name: Notify deployment failure
+        if: failure()
+        run: |
+          echo "❌ Deployment failed!"
+          echo "Please check the logs for more information."
