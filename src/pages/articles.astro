@@ -1,13 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ArticleCard from '../components/ArticleCard.tsx';
-import { articles } from '../data/articles';
+import { getCollection} from "astro:content";
+import {type Article, fromAstroMdx} from "../data/articles.ts";
 
+/*
 // Sort articles by date (newest first)
 const sortedArticles = articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 // Get unique tags
 const allTags = [...new Set(articles.flatMap(article => article.tags))];
+*/
+// TODO: transform data to object who respect the interface Article
+const rawArticles = await getCollection('articles');
+const articles: Article[] = rawArticles.map((article) => {
+    return fromAstroMdx(article);
+})
+
+// Sort posts by date (newest first)
+const sortedArticles = articles.sort((a, b) =>
+    b.date.getTime() - a.date.getTime()
+);
 ---
 
 <Layout title="Articles | Software Engineer Portfolio">
@@ -28,7 +41,7 @@ const allTags = [...new Set(articles.flatMap(article => article.tags))];
           <div class="text-slate-400 text-sm">Articles</div>
         </div>
         <div class="text-center">
-          <div class="text-2xl font-bold text-blue-400">{allTags.length}</div>
+          <div class="text-2xl font-bold text-blue-400">allTags.length</div>
           <div class="text-slate-400 text-sm">Topics</div>
         </div>
         <div class="text-center">
@@ -49,14 +62,14 @@ const allTags = [...new Set(articles.flatMap(article => article.tags))];
         >
           All Articles
         </button>
-        {allTags.map(tag => (
+        allTags.map(tag => (
           <button 
             class="filter-tag px-4 py-2 rounded-full text-sm font-medium transition-all duration-200"
-            data-tag={tag}
+            data-tag=tag
           >
-            {tag}
+            tag
           </button>
-        ))}
+        ))
       </div>
     </section>
 
@@ -64,7 +77,7 @@ const allTags = [...new Set(articles.flatMap(article => article.tags))];
     <section class="max-w-6xl mx-auto">
       <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {sortedArticles.map((article) => (
-          <div class="article-item" data-tags={article.tags.join(',')}>
+          <div class="article-item" > <!--data-tags={article.tags.join(',')}-->
             <ArticleCard article={article} client:load />
           </div>
         ))}

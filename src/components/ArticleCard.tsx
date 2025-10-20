@@ -18,7 +18,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
   return (
     <article className="group">
       <a
-        href={`/articles/${article.id}`}
+        href={`/articles/${article.slug}`}
         className="block bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-slate-600 hover:bg-slate-800/70 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-500/10"
       >
         <div className="flex justify-between items-start mb-4">
@@ -41,7 +41,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         </p>
         
         <div className="flex flex-wrap gap-2">
-          {article.tags.slice(0, 3).map((tag) => (
+          {/*{article.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
               className="px-3 py-1 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-medium rounded-full"
@@ -53,7 +53,8 @@ export default function ArticleCard({ article }: ArticleCardProps) {
             <span className="px-3 py-1 text-slate-400 text-xs">
               +{article.tags.length - 3} more
             </span>
-          )}
+          )}*/}
+            work in progress
         </div>
       </a>
     </article>
