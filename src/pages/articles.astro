@@ -1,25 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection} from "astro:content";
-import {type Article, fromAstroMdx} from "../data/articles.ts";
+import {Article} from "../data/articles.ts";
 import ArticleList from "../components/articles/ArticlesList.tsx";
 
-// Fetch all articles
-const rawArticles = await getCollection('articles');
 
-// Extract data and convert to Article type
-const articles: Article[] = rawArticles.map((article) => {
-    return fromAstroMdx(article);
-})
-
-// Extract unique tags
-const allTags = [...new Set(articles.flatMap(article => article.tags))];
-const sortedTags = allTags.sort((a, b) => a.localeCompare(b));
+const sortedTags = await Article.getAllTags()
 
 // Sort posts by date (newest first)
-const sortedArticles = articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const sortedArticles = await Article.getAllArticles()
 
-const oldestDate = new Date(sortedArticles[sortedArticles.length - 1].date).getFullYear();
+const oldestDate = await Article.oldestDate()
 ---
 
 <Layout title="Articles | Software Engineer Portfolio">
@@ -36,7 +26,7 @@ const oldestDate = new Date(sortedArticles[sortedArticles.length - 1].date).getF
       <!-- Article Stats -->
       <div class="flex justify-center space-x-8 mb-8">
         <div class="text-center">
-          <div class="text-2xl font-bold text-cyan-400">{articles.length}</div>
+          <div class="text-2xl font-bold text-cyan-400">{sortedArticles.length}</div>
           <div class="text-slate-400 text-sm">Articles</div>
         </div>
         <div class="text-center">

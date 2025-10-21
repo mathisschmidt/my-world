@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import {fromAstroMdx} from '../../data/articles';
+import {Article} from '../../data/articles';
 
 export async function getStaticPaths() {
     const allArticles = await getCollection('articles');
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const { Content } = await article.render();
-const processedArticle = fromAstroMdx(article);
+const processedArticle = Article.fromAstroMdx(article);
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
@@ -167,27 +167,6 @@ import "../../styles/article.css";
     )}-->
   </div>
 </Layout>
-
-<script>
-  function copyToClipboard() {
-    navigator.clipboard.writeText(window.location.href).then(() => {
-      // Show feedback
-      const button = event.target.closest('button');
-      const originalIcon = button.innerHTML;
-      button.innerHTML = `
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
-      `;
-      button.classList.add('bg-green-600');
-      
-      setTimeout(() => {
-        button.innerHTML = originalIcon;
-        button.classList.remove('bg-green-600');
-      }, 2000);
-    });
-  }
-</script>
 
 <style>
   .line-clamp-2 {
