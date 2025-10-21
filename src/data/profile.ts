@@ -32,14 +32,13 @@ export interface Skill {
 }
 
 export const profile: Profile = {
-  name: 'Matthieu Schmidt',
-  title: 'Senior Software Engineer',
-  bio: 'Passionate software engineer with expertise in building modern web applications and distributed systems. I love creating elegant solutions to complex problems and sharing knowledge with the developer community.',
+  name: 'Mathis Schmidt',
+  title: 'Software Engineer',
+  bio: 'In resume, you have problem, I have the solution. Let\'s build something amazing together!',
   email: 'matthieu.schmidt@example.com',
   links: {
-    github: 'https://github.com/mschmidt',
-    gitlab: 'https://gitlab.com/mschmidt',
-    linkedin: 'https://linkedin.com/in/matthieu-schmidt',
+    github: 'https://github.com/mathisschmidt',
+    linkedin: 'https://www.linkedin.com/in/mathis-schmidt-72694a165/',
   },
 };
 

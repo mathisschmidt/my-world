@@ -41,7 +41,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         </p>
         
         <div className="flex flex-wrap gap-2">
-          {/*{article.tags.slice(0, 3).map((tag) => (
+          {article.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
               className="px-3 py-1 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-medium rounded-full"
@@ -53,8 +53,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
             <span className="px-3 py-1 text-slate-400 text-xs">
               +{article.tags.length - 3} more
             </span>
-          )}*/}
-            work in progress
+          )}
         </div>
       </a>
     </article>

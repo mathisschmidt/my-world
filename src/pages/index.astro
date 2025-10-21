@@ -2,19 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import FloatingRobot from '../components/FloatingRobot.tsx';
 import ArticleCard from '../components/ArticleCard.tsx';
-import { articles } from '../data/articles';
 import { profile } from '../data/profile';
+import {Article} from "../data/articles.ts";
 
 // Get the 3 most recent articles
-const recentArticles = articles
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  .slice(0, 3);
+const recentArticles = (await Article.getAllArticles()).slice(0, 3);
 ---
 
-<Layout title="Home | Software Engineer Portfolio">
+<Layout title="MathisWorld - Home">
   <div class="min-h-screen">
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center px-6">
+    <section class="relative min-h-[50vh] flex items-center justify-center px-6">
       <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-slate-900 to-purple-900/20"></div>
       
       <!-- Floating Robot -->
@@ -62,19 +60,6 @@ const recentArticles = articles
               </svg>
             </a>
           )}
-          {profile.links.gitlab && (
-            <a 
-              href={profile.links.gitlab} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="text-slate-400 hover:text-orange-400 transition-colors p-2"
-              aria-label="GitLab"
-            >
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.955 13.587l-1.342-4.135-2.664-8.189c-.135-.423-.73-.423-.867 0L16.418 9.45H7.582L4.919 1.263c-.135-.423-.73-.423-.867 0L1.388 9.452.046 13.587c-.121.375.014.789.331 1.023L12 23.054l11.624-8.443c.318-.235.453-.648.331-1.024"/>
-              </svg>
-            </a>
-          )}
           {profile.links.linkedin && (
             <a 
               href={profile.links.linkedin} 
@@ -109,7 +94,7 @@ const recentArticles = articles
             Latest Articles
           </h2>
           <p class="text-slate-400 text-lg max-w-2xl mx-auto">
-            Discover my latest thoughts on software development, side projects, and technology trends.
+            Discover my latest thoughts on software development, side projects, and other.
           </p>
         </div>
         
@@ -134,7 +119,7 @@ const recentArticles = articles
     </section>
 
     <!-- Quick Stats Section -->
-    <section class="py-20 px-6 bg-slate-800/50">
+    <!--<section class="py-20 px-6 bg-slate-800/50">
       <div class="max-w-4xl mx-auto">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div class="space-y-2">
@@ -142,7 +127,7 @@ const recentArticles = articles
             <div class="text-slate-400">Years Experience</div>
           </div>
           <div class="space-y-2">
-            <div class="text-3xl font-bold text-blue-400">{articles.length}</div>
+            <div class="text-3xl font-bold text-blue-400">articles.length</div>
             <div class="text-slate-400">Articles Written</div>
           </div>
           <div class="space-y-2">
@@ -155,6 +140,6 @@ const recentArticles = articles
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
   </div>
 </Layout>
