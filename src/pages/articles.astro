@@ -1,26 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ArticleCard from '../components/ArticleCard.tsx';
 import { getCollection} from "astro:content";
 import {type Article, fromAstroMdx} from "../data/articles.ts";
+import ArticleList from "../components/articles/ArticlesList.tsx";
 
-/*
-// Sort articles by date (newest first)
-const sortedArticles = articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-// Get unique tags
-const allTags = [...new Set(articles.flatMap(article => article.tags))];
-*/
-// TODO: transform data to object who respect the interface Article
+// Fetch all articles
 const rawArticles = await getCollection('articles');
+
+// Extract data and convert to Article type
 const articles: Article[] = rawArticles.map((article) => {
     return fromAstroMdx(article);
 })
 
+// Extract unique tags
+const allTags = [...new Set(articles.flatMap(article => article.tags))];
+const sortedTags = allTags.sort((a, b) => a.localeCompare(b));
+
 // Sort posts by date (newest first)
-const sortedArticles = articles.sort((a, b) =>
-    b.date.getTime() - a.date.getTime()
-);
+const sortedArticles = articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const oldestDate = new Date(sortedArticles[sortedArticles.length - 1].date).getFullYear();
 ---
 
 <Layout title="Articles | Software Engineer Portfolio">
@@ -41,156 +40,19 @@ const sortedArticles = articles.sort((a, b) =>
           <div class="text-slate-400 text-sm">Articles</div>
         </div>
         <div class="text-center">
-          <div class="text-2xl font-bold text-blue-400">allTags.length</div>
+          <div class="text-2xl font-bold text-blue-400">{sortedTags.length}</div>
           <div class="text-slate-400 text-sm">Topics</div>
         </div>
         <div class="text-center">
           <div class="text-2xl font-bold text-purple-400">
-            {new Date().getFullYear() - new Date(Math.min(...articles.map(a => new Date(a.date).getTime()))).getFullYear() + 1}
+            {new Date().getFullYear() - oldestDate}
           </div>
           <div class="text-slate-400 text-sm">Years Writing</div>
         </div>
       </div>
     </section>
 
-    <!-- Filter Tags -->
-    <section class="max-w-6xl mx-auto mb-12">
-      <div class="flex flex-wrap justify-center gap-3">
-        <button 
-          class="filter-tag active px-4 py-2 rounded-full text-sm font-medium transition-all duration-200"
-          data-tag="all"
-        >
-          All Articles
-        </button>
-        allTags.map(tag => (
-          <button 
-            class="filter-tag px-4 py-2 rounded-full text-sm font-medium transition-all duration-200"
-            data-tag=tag
-          >
-            tag
-          </button>
-        ))
-      </div>
-    </section>
-
-    <!-- Articles Grid -->
-    <section class="max-w-6xl mx-auto">
-      <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {sortedArticles.map((article) => (
-          <div class="article-item" > <!--data-tags={article.tags.join(',')}-->
-            <ArticleCard article={article} client:load />
-          </div>
-        ))}
-      </div>
-
-      <!-- No results message -->
-      <div id="no-results" class="hidden text-center py-16">
-        <div class="text-slate-400 text-lg">
-          <svg class="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47-.881-6.084-2.334.653-.546 1.182-1.233 1.53-2.027A7.93 7.93 0 0112 9c4.418 0 8 3.358 8 7.5 0 1.76-.64 3.374-1.709 4.709z"></path>
-          </svg>
-          <p>No articles found for the selected tag.</p>
-          <button class="mt-4 text-cyan-400 hover:text-cyan-300 transition-colors" onclick="showAllArticles()">
-            Show all articles
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Newsletter Signup -->
-    <section class="max-w-4xl mx-auto mt-20 text-center">
-      <div class="bg-gradient-to-r from-slate-800/50 to-slate-700/50 rounded-2xl p-8 border border-slate-600">
-        <h3 class="text-2xl font-bold text-white mb-4">Stay Updated</h3>
-        <p class="text-slate-300 mb-6">
-          Get notified when I publish new articles about software development and technology.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
-          <input 
-            type="email" 
-            placeholder="Enter your email" 
-            class="flex-1 px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 transition-colors"
-          />
-          <button class="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-cyan-500/25 whitespace-nowrap">
-            Subscribe
-          </button>
-        </div>
-      </div>
-    </section>
+    <!-- Articles -->
+    <ArticleList articles={sortedArticles} tags={sortedTags} client:load />
   </div>
 </Layout>
-
-<script>
-  // Filter functionality
-  document.addEventListener('DOMContentLoaded', () => {
-    const filterTags = document.querySelectorAll('.filter-tag');
-    const articleItems = document.querySelectorAll('.article-item');
-    const noResults = document.getElementById('no-results');
-
-    function filterArticles(selectedTag: string) {
-      let visibleCount = 0;
-
-      articleItems.forEach((item) => {
-        const articleTags = item.getAttribute('data-tags');
-        const shouldShow = selectedTag === 'all' || articleTags?.includes(selectedTag);
-        
-        if (shouldShow) {
-          item.classList.remove('hidden');
-          visibleCount++;
-        } else {
-          item.classList.add('hidden');
-        }
-      });
-
-      // Show/hide no results message
-      if (visibleCount === 0) {
-        noResults?.classList.remove('hidden');
-      } else {
-        noResults?.classList.add('hidden');
-      }
-    }
-
-    // Add click handlers to filter tags
-    filterTags.forEach(tag => {
-      tag.addEventListener('click', () => {
-        const selectedTag = tag.getAttribute('data-tag');
-        
-        // Update active state
-        filterTags.forEach(t => t.classList.remove('active'));
-        tag.classList.add('active');
-        
-        // Filter articles
-        if (selectedTag) {
-          filterArticles(selectedTag);
-        }
-      });
-    });
-
-    // Show all articles function
-    window.showAllArticles = () => {
-      filterTags.forEach(t => t.classList.remove('active'));
-      const allButton = document.querySelector('[data-tag="all"]');
-      allButton?.classList.add('active');
-      filterArticles('all');
-    };
-  });
-</script>
-
-<style>
-  .filter-tag {
-    @apply bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700;
-  }
-
-  .filter-tag.active {
-    @apply bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-transparent shadow-lg;
-  }
-
-  .article-item {
-    transition: all 0.3s ease-in-out;
-  }
-
-  .article-item.hidden {
-    opacity: 0;
-    transform: scale(0.8);
-    pointer-events: none;
-  }
-</style>
