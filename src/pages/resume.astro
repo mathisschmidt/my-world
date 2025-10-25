@@ -1,41 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ResumeSection from '../components/ResumeSection.tsx';
-import TurtleRobot from '../components/TurtleRobot.tsx';
 import ExperienceTree from '../components/ExperienceTree.tsx';
 import StudentRobot from '../components/StudentRobot.tsx';
 import RobotAssembler from '../components/RobotAssembler.tsx';
-import AboutModal from '../components/AboutModal.tsx';
 import { profile, education, experience, skills } from '../data/profile';
+import React from "react";
 ---
+
+/*TODO: transform header to a little card on right of the nav and put nav on the left*/
 
 <Layout title="Resume | Software Engineer Portfolio">
   <div class="min-h-screen">
-    <!-- Hero Section with Turtle Robot -->
-    <section class="relative pt-10 pb-20 px-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/10 via-transparent to-purple-900/10"></div>
-      
-      <div class="relative z-10 max-w-4xl mx-auto text-center">
-        <div class="mb-8">
-          <!-- Replace circle with Turtle Robot -->
-          <div class="flex justify-center mb-6">
-            <TurtleRobot client:load />
-          </div>
-          
-          <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-            {profile.name}
-          </h1>
-          <p class="text-xl text-slate-300 mb-2">{profile.title}</p>
-          <p class="text-slate-400">{profile.email}</p>
-        </div>
-      </div>
-    </section>
-
     <!-- Resume Sections -->
     <section class="py-20 px-6">
       <div class="max-w-6xl mx-auto">
         <!-- Section Navigation -->
-        <div class="flex justify-center mb-16">
+          <!--TODO: when scroll stay on top-->
+        <div class="flex justify-start mb-16">
           <div class="flex flex-wrap gap-4">
             <button 
               class="resume-nav-btn active px-6 py-3 rounded-lg font-medium transition-all duration-300"
@@ -81,29 +63,95 @@ import { profile, education, experience, skills } from '../data/profile';
         <div id="resume-content" class="min-h-[600px]">
           <!-- About Section -->
           <div id="about-section" class="resume-section active">
-            <ResumeSection 
-              title="About Me"
-              client:load
-            >
-              <div class="max-w-3xl mx-auto text-center">
-                <div class="bg-slate-800/30 rounded-2xl p-8 border border-slate-700">
-                  <div class="text-6xl mb-4">🐢</div>
-                  <h3 class="text-2xl font-bold text-white mb-4">Click the Turtle Robot Above!</h3>
-                  <p class="text-slate-300 leading-relaxed">
-                    The turtle robot above will open a detailed modal about my background, 
-                    philosophy, and personal interests. Click on it to learn more about who I am 
-                    beyond the code!
-                  </p>
-                  <div class="mt-6 flex justify-center">
-                    <div class="animate-bounce">
-                      <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
-                      </svg>
-                    </div>
+              <ResumeSection
+                      title="About Me"
+                      client:load
+              >
+                  {/* Content */}
+                  <div class="space-y-4">
+                      {/* Bio */}
+                      <div class="text-slate-300 leading-relaxed space-y-3">
+                          <p class="text-base">{profile.bio}</p>
+                          <p>
+                              I'm passionate about creating efficient, scalable solutions and staying up-to-date with the latest technologies. I believe in writing clean, maintainable code and fostering collaborative environments where teams can thrive.
+                          </p>
+                          <p>
+                              When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through technical articles and mentoring.
+                          </p>
+                      </div>
+
+                      {/* Interests & Hobbies */}
+                      <div class="bg-slate-700/50 rounded-xl p-4">
+                          <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
+                              <svg class="w-5 h-5 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path class="round" stroke-line-join="round" stroke-Width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                              </svg>
+                              Interests & Passions
+                          </h3>
+                          <div class="grid grid-cols-2 gap-3">
+                              <div class="space-y-2">
+                                  <div class="flex items-center space-x-2">
+                                      <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                                      <span class="text-slate-300">Open Source Contributions</span>
+                                  </div>
+                                  <div class="flex items-center space-x-2">
+                                      <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+                                      <span class="text-slate-300">Technical Writing</span>
+                                  </div>
+                                  <div class="flex items-center space-x-2">
+                                      <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
+                                      <span class="text-slate-300">Mentoring Developers</span>
+                                  </div>
+                              </div>
+                              <div class="space-y-2">
+                                  <div class="flex items-center space-x-2">
+                                      <span class="w-2 h-2 bg-green-400 rounded-full"></span>
+                                      <span class="text-slate-300">Learning New Technologies</span>
+                                  </div>
+                                  <div class="flex items-center space-x-2">
+                                      <span class="w-2 h-2 bg-yellow-400 rounded-full"></span>
+                                      <span class="text-slate-300">Building Side Projects</span>
+                                  </div>
+                                  <div class="flex items-center space-x-2">
+                                      <span class="w-2 h-2 bg-pink-400 rounded-full"></span>
+                                      <span class="text-slate-300">Community Involvement</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      {/* Philosophy */}
+                      <div class="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-xl p-4">
+                          <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
+                              <svg class="w-5 h-5 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path class="round" stroke-line-join="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                              </svg>
+                              Development Philosophy
+                          </h3>
+                          <blockquote class="text-slate-300 italic text-sm">
+                              "Code is read more than it's written. I strive to create solutions that are not only
+                              functional but also elegant, maintainable, and accessible to future developers who
+                              will inherit the codebase."
+                          </blockquote>
+                      </div>
+
+                      {/* Contact */}
+                      <div class="text-center pt-4">
+                          mathisschmidt2@gmail.com
+                          <div class="flex justify-center space-x-4">
+                              <a
+                                      href={`mailto:${profile.email}`}
+                                      class="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-cyan-500/25 flex items-center space-x-2"
+                              >
+                                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-line-join="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                  </svg>
+                                  <span>Get In Touch</span>
+                              </a>
+                          </div>
+                      </div>
                   </div>
-                </div>
-              </div>
-            </ResumeSection>
+              </ResumeSection>
           </div>
 
           <!-- Experience Section with Tree -->
@@ -113,12 +161,6 @@ import { profile, education, experience, skills } from '../data/profile';
               client:load
             >
               <div class="max-w-full">
-                <div class="text-center mb-8">
-                  <p class="text-slate-300 text-lg">
-                    My career growth visualized as a tree, with the monkey robot as my guide! 
-                    Each branch represents a milestone in my professional development.
-                  </p>
-                </div>
                 <ExperienceTree client:load />
               </div>
             </ResumeSection>
@@ -242,19 +284,20 @@ import { profile, education, experience, skills } from '../data/profile';
         </div>
       </div>
     </section>
-
-    <!-- About Modal -->
-    <AboutModal client:load />
   </div>
 </Layout>
 
 <script>
   // Resume section navigation
   document.addEventListener('DOMContentLoaded', () => {
+      console.log('Resume page loaded');
     const navButtons = document.querySelectorAll('.resume-nav-btn');
     const sections = document.querySelectorAll('.resume-section');
+    console.log("Nb navButtons: " + navButtons.length);
+    console.log("Nb sections: " + sections.length);
 
     function showSection(sectionId: string) {
+      console.log(sectionId);
       // Hide all sections
       sections.forEach(section => {
         section.classList.remove('active');
@@ -294,7 +337,9 @@ import { profile, education, experience, skills } from '../data/profile';
     navButtons.forEach(button => {
       button.addEventListener('click', () => {
         const section = button.getAttribute('data-section');
+        console.log("Section: " + section);
         if (section) {
+          console.log("Truc1: " + section);
           showSection(section);
         }
       });
@@ -305,23 +350,6 @@ import { profile, education, experience, skills } from '../data/profile';
     skillBars.forEach(bar => {
       (bar as HTMLElement).style.width = '0%';
     });
-
-    // Handle turtle robot click for about modal
-    let aboutModal: any = null;
-    let setModalOpen: any = null;
-
-    // Global function to handle turtle click
-    window.handleTurtleClick = () => {
-      if (setModalOpen) {
-        setModalOpen(true);
-      }
-    };
-
-    // Store modal reference
-    window.setAboutModalRef = (modalRef: any, setOpen: any) => {
-      aboutModal = modalRef;
-      setModalOpen = setOpen;
-    };
   });
 </script>
 
