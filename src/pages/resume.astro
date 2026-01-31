@@ -71,68 +71,85 @@ import React from "react";
                   <div class="space-y-4">
                       {/* Bio */}
                       <div class="text-slate-300 leading-relaxed space-y-3">
-                          <p class="text-base">{profile.bio}</p>
-                          <p>
-                              I'm passionate about creating efficient, scalable solutions and staying up-to-date with the latest technologies. I believe in writing clean, maintainable code and fostering collaborative environments where teams can thrive.
-                          </p>
-                          <p>
-                              When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through technical articles and mentoring.
+                          <p class="text-base">
+                              Curiosity is my compass. I thrive on learning new things, tackling challenges, and discovering solutions—honestly, problem-solving is my favorite dopamine hit. When I'm not at my computer, you'll find me hiking through nature with my wife and our dog, recharging for the next adventure.
                           </p>
                       </div>
 
-                      {/* Interests & Hobbies */}
                       <div class="bg-slate-700/50 rounded-xl p-4">
                           <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
                               <svg class="w-5 h-5 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path class="round" stroke-line-join="round" stroke-Width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                               </svg>
-                              Interests & Passions
+                              What Drives Me
                           </h3>
-                          <div class="grid grid-cols-2 gap-3">
+                          <div class="grid grid-cols-1 gap-3">
                               <div class="space-y-2">
                                   <div class="flex items-center space-x-2">
                                       <span class="w-2 h-2 bg-cyan-400 rounded-full"></span>
-                                      <span class="text-slate-300">Open Source Contributions</span>
-                                  </div>
-                                  <div class="flex items-center space-x-2">
-                                      <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
-                                      <span class="text-slate-300">Technical Writing</span>
+                                      <span class="text-slate-300">
+                                          <span class="font-bold">Continuous Learning</span>
+                                          – I'm always diving into something new, whether it's a technology, framework, or concept that pushes my thinking.
+                                      </span>
                                   </div>
                                   <div class="flex items-center space-x-2">
                                       <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
-                                      <span class="text-slate-300">Mentoring Developers</span>
+                                      <span class="text-slate-300">
+                                          <span class="font-bold">Building Side Projects</span>
+                                          – There's nothing quite like bringing an idea to life from scratch.
+                                      </span>
                                   </div>
-                              </div>
-                              <div class="space-y-2">
+                                  <div class="flex items-center space-x-2">
+                                      <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+                                      <span class="text-slate-300">
+                                          <span class="font-bold">Brazilian Jiu-Jitsu</span>
+                                          – The perfect mix of strategy, discipline, and physical challenge.
+                                      </span>
+                                  </div>
                                   <div class="flex items-center space-x-2">
                                       <span class="w-2 h-2 bg-green-400 rounded-full"></span>
-                                      <span class="text-slate-300">Learning New Technologies</span>
-                                  </div>
-                                  <div class="flex items-center space-x-2">
-                                      <span class="w-2 h-2 bg-yellow-400 rounded-full"></span>
-                                      <span class="text-slate-300">Building Side Projects</span>
-                                  </div>
-                                  <div class="flex items-center space-x-2">
-                                      <span class="w-2 h-2 bg-pink-400 rounded-full"></span>
-                                      <span class="text-slate-300">Community Involvement</span>
+                                      <span class="text-slate-300">
+                                          <span class="font-bold">Video Games</span>
+                                          – My guilty pleasure and occasional source of inspiration.
+                                      </span>
                                   </div>
                               </div>
                           </div>
                       </div>
 
-                      {/* Philosophy */}
+                      <div class="bg-slate-700/50 rounded-xl p-4">
+                          <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
+                              <svg class="w-5 h-5 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                              </svg>
+                              Why I Love Engineering
+                          </h3>
+                          <div class="grid grid-cols-1 gap-3">
+                              <p>
+                                  Engineering is fundamentally about finding elegant solutions to real problems and bringing them to life. Every project demands learning, questioning your assumptions, and pushing for that next level of optimization. Honestly, who wouldn't love that?
+                              </p>
+                              <p>
+                                  What keeps it exciting is that no two problems are truly the same. You might encounter similar challenges across different teams or contexts, but each requires adapting your approach. It's an endless well of curiosity and discovery—and I'm here for it.
+                              </p>
+                          </div>
+                      </div>
+
                       <div class="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-xl p-4">
                           <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
                               <svg class="w-5 h-5 mr-2 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path class="round" stroke-line-join="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                               </svg>
-                              Development Philosophy
+                              Oh by the way are you hiring?
                           </h3>
-                          <blockquote class="text-slate-300 italic text-sm">
-                              "Code is read more than it's written. I strive to create solutions that are not only
-                              functional but also elegant, maintainable, and accessible to future developers who
-                              will inherit the codebase."
-                          </blockquote>
+                          <p>
+                              I'm currently seeking a new opportunity with a company that empowers its technical teams to explore and innovate—not just maintain legacy systems, but actually invest time in proof-of-concepts and fresh solutions. Progress requires experimentation, and I want to work somewhere that gets that.
+                          </p>
+                          <p>
+                              I also believe the best work environments are flexible. Remote work brings out my best, but I know that's not true for everyone. The right company understands that one-size-fits-all doesn't work and adapts to what helps each person thrive.
+                          </p>
+                          <p>
+                              Ultimately, I'm looking for a place where I won't need side projects to satisfy my curiosity—where I can channel that energy into meaningful work alongside people who share the same passion for building something better.
+                          </p>
                       </div>
 
                       {/* Contact */}
@@ -205,6 +222,7 @@ import React from "react";
               </div>
             </ResumeSection>
           </div>
+
 
           <!-- Skills Section with Robot Assembler -->
           <div id="skills-section" class="resume-section">
