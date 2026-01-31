@@ -2,12 +2,12 @@ export interface Profile {
   name: string;
   title: string;
   bio: string;
-  email: string;
   links: {
     github?: string;
     gitlab?: string;
     linkedin?: string;
     twitter?: string;
+    email?: string;
   };
 }
 
@@ -35,10 +35,10 @@ export const profile: Profile = {
   name: 'Mathis Schmidt',
   title: 'Software Engineer',
   bio: 'In resume, you have problem, I have the solution. Let\'s build something amazing together!',
-  email: 'matthieu.schmidt@example.com',
   links: {
     github: 'https://github.com/mathisschmidt',
     linkedin: 'https://www.linkedin.com/in/mathis-schmidt-72694a165/',
+    email: 'mailto:mathisschmidt2@gmail.com'
   },
 };
 

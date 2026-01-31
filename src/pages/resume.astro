@@ -151,29 +151,13 @@ import React from "react";
                               Ultimately, I'm looking for a place where I won't need side projects to satisfy my curiosity—where I can channel that energy into meaningful work alongside people who share the same passion for building something better.
                           </p>
                       </div>
-
-                      {/* Contact */}
-                      <div class="text-center pt-4">
-                          mathisschmidt2@gmail.com
-                          <div class="flex justify-center space-x-4">
-                              <a
-                                      href={`mailto:${profile.email}`}
-                                      class="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-cyan-500/25 flex items-center space-x-2"
-                              >
-                                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-line-join="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                  </svg>
-                                  <span>Get In Touch</span>
-                              </a>
-                          </div>
-                      </div>
                   </div>
               </ResumeSection>
           </div>
 
           <!-- Experience Section with Tree -->
           <div id="experience-section" class="resume-section">
-            <ResumeSection 
+            <ResumeSection
               title="Professional Journey"
               client:load
             >
@@ -185,7 +169,7 @@ import React from "react";
 
           <!-- Education Section with Student Robot -->
           <div id="education-section" class="resume-section">
-            <ResumeSection 
+            <ResumeSection
               title="Academic Foundation"
               client:load
             >
@@ -193,11 +177,11 @@ import React from "react";
                 <div class="text-center mb-8">
                   <StudentRobot client:load />
                   <p class="text-slate-300 text-lg mb-8">
-                    Meet my student robot companion! Together we've built a solid foundation 
+                    Meet my student robot companion! Together we've built a solid foundation
                     in computer science and engineering principles.
                   </p>
                 </div>
-                
+
                 <div class="space-y-6">
                   {education.map((edu, index) => (
                     <div class="bg-slate-800/30 rounded-xl p-6 border border-slate-700 hover:border-slate-600 transition-colors">
@@ -226,20 +210,20 @@ import React from "react";
 
           <!-- Skills Section with Robot Assembler -->
           <div id="skills-section" class="resume-section">
-            <ResumeSection 
+            <ResumeSection
               title="Skills Assembly Lab"
               client:load
             >
               <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
                   <p class="text-slate-300 text-lg mb-8">
-                    Watch as my assembler robot builds new capabilities using my skills as parameters! 
+                    Watch as my assembler robot builds new capabilities using my skills as parameters!
                     Each skill contributes to creating better solutions and innovations.
                   </p>
                 </div>
-                
+
                 <RobotAssembler activeSkills={skills} client:load />
-                
+
                 <!-- Skills Grid -->
                 <div class="grid md:grid-cols-2 gap-8 mt-16">
                   <!-- Technical Skills -->
@@ -258,7 +242,7 @@ import React from "react";
                             <span class="text-cyan-400 font-medium">{skill.level}%</span>
                           </div>
                           <div class="w-full bg-slate-700 rounded-full h-2">
-                            <div 
+                            <div
                               class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full skill-bar"
                               style={`width: 0%`}
                               data-width={skill.level}
@@ -285,7 +269,7 @@ import React from "react";
                             <span class="text-purple-400 font-medium">{skill.level}%</span>
                           </div>
                           <div class="w-full bg-slate-700 rounded-full h-2">
-                            <div 
+                            <div
                               class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full skill-bar"
                               style={`width: 0%`}
                               data-width={skill.level}

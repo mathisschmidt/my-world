@@ -14,10 +14,10 @@ const recentArticles = (await Article.getAllArticles()).slice(0, 3);
     <!-- Hero Section -->
     <section class="relative min-h-[50vh] flex items-center justify-center px-6">
       <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-slate-900 to-purple-900/20"></div>
-      
+
       <!-- Floating Robot -->
       <FloatingRobot client:load />
-      
+
       <div class="relative z-10 max-w-4xl mx-auto text-center">
         <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
           {profile.name}
@@ -28,17 +28,17 @@ const recentArticles = (await Article.getAllArticles()).slice(0, 3);
         <p class="text-lg text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
           {profile.bio}
         </p>
-        
+
         <!-- CTA Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-          <a 
-            href="/resume" 
+          <a
+            href="/resume"
             class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-cyan-500/25"
           >
             View Resume
           </a>
-          <a 
-            href="/articles" 
+          <a
+            href="/articles"
             class="px-8 py-3 border border-slate-600 text-slate-300 rounded-lg font-semibold hover:bg-slate-800 hover:border-slate-500 transition-all duration-200"
           >
             Read Articles
@@ -48,9 +48,9 @@ const recentArticles = (await Article.getAllArticles()).slice(0, 3);
         <!-- Social Links -->
         <div class="flex justify-center space-x-6">
           {profile.links.github && (
-            <a 
-              href={profile.links.github} 
-              target="_blank" 
+            <a
+              href={profile.links.github}
+              target="_blank"
               rel="noopener noreferrer"
               class="text-slate-400 hover:text-cyan-400 transition-colors p-2"
               aria-label="GitHub"
@@ -61,9 +61,9 @@ const recentArticles = (await Article.getAllArticles()).slice(0, 3);
             </a>
           )}
           {profile.links.linkedin && (
-            <a 
-              href={profile.links.linkedin} 
-              target="_blank" 
+            <a
+              href={profile.links.linkedin}
+              target="_blank"
               rel="noopener noreferrer"
               class="text-slate-400 hover:text-blue-400 transition-colors p-2"
               aria-label="LinkedIn"
@@ -73,6 +73,17 @@ const recentArticles = (await Article.getAllArticles()).slice(0, 3);
               </svg>
             </a>
           )}
+            {profile.links.email && (
+            <a
+              href={profile.links.email}
+              class="text-slate-400 hover:text-green-400 transition-colors p-2"
+              aria-label="Email"
+            >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </a>
+            )}
         </div>
       </div>
 
@@ -97,16 +108,16 @@ const recentArticles = (await Article.getAllArticles()).slice(0, 3);
             Discover my latest thoughts on software development, side projects, and other.
           </p>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {recentArticles.map((article) => (
             <ArticleCard article={article} client:load />
           ))}
         </div>
-        
+
         <div class="text-center mt-12">
-          <a 
-            href="/articles" 
+          <a
+            href="/articles"
             class="inline-flex items-center px-6 py-3 border border-slate-600 text-slate-300 rounded-lg font-semibold hover:bg-slate-800 hover:border-slate-500 transition-all duration-200"
           >
             View All Articles
