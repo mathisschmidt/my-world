@@ -31,7 +31,6 @@ src/
 │   ├── ArticleCard.tsx     # Article preview cards
 │   ├── FloatingRobot.tsx   # Animated robot for homepage
 │   ├── ResumeSection.tsx   # Resume section wrapper
-│   └── RobotAnimation.tsx  # Robot for resume page
 ├── data/               # Data files
 │   ├── articles.ts         # Articles content
 │   └── profile.ts          # Personal information
@@ -219,7 +218,6 @@ The site uses a modern color palette with cyan, blue, and purple gradients. You 
 
 The robot animations are built with SVG and can be customized in:
 - `FloatingRobot.tsx` - Homepage robot
-- `RobotAnimation.tsx` - Resume page robot
 
 ### Adding New Pages
 
