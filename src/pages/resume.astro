@@ -16,7 +16,6 @@ import React from "react";
     <section class="py-20 px-6">
       <div class="max-w-6xl mx-auto">
         <!-- Section Navigation -->
-          <!--TODO: when scroll stay on top-->
         <div class="flex justify-start mb-16 resume-nav-wrap">
           <div class="flex flex-wrap gap-4">
             <button 
@@ -174,14 +173,6 @@ import React from "react";
               client:load
             >
               <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-8">
-                  <StudentRobot client:load />
-                  <p class="text-slate-300 text-lg mb-8">
-                    Meet my student robot companion! Together we've built a solid foundation
-                    in computer science and engineering principles.
-                  </p>
-                </div>
-
                 <div class="space-y-6">
                   {education.map((edu, index) => (
                     <div class="bg-slate-800/30 rounded-xl p-6 border border-slate-700 hover:border-slate-600 transition-colors">
