@@ -1,0 +1,64 @@
+---
+title: "AI, the cost and why company are the key"
+author: "Mathis Schmidt"
+date: 2025-08-01
+tags: ["AI", "MyOpinion", "SoftwareEngineering"]
+---
+
+As a software engineer, I witness the transformative power of AI in our daily work. These tools are no longer futuristic concepts; they are tangible assets that provide recommendations, help diagnose errors, generate code, and even scaffold a new project from scratch. I view them as a hybrid of an intern and an assistant: they can perform complex coding tasks but, much like an intern, require guidance and have their limitations. Simultaneously, they function as an invaluable assistant, refining documentation and fixing grammar. The more we use them, the more their power and utility become apparent.
+
+However, this transformative potential is gated by two critical challenges: **cost** and **professional usage**.
+
+For personal use, numerous free solutions exist, but they are often constrained by limits on tokens, request counts, or performance. While paid plans offer more robust features, the price scales with capability. Solutions like GitHub Copilot can cost `$10/user/month`, while advanced models like Claude can reach `$200/user/month`. For those with the technical know-how and hardware like a MacBook with an M-series chip or a personal server, open-source models are an option, but the most powerful ones often remain out of reach due to hardware limitations. For non-professional use, these costs can quickly become prohibitive.
+
+In the professional sphere, employees like myself eagerly await the full integration of these AI tools into our corporate environments. The primary barrier, however, is data security and confidentiality. No company wants its proprietary codebase, client data, or any sensitive information transmitted to a third-party database or over the public internet. While many providers offer robust "enterprise" or "pro" plans with strong data guarantees, a lingering question remains: can we ever be absolutely certain our data is safe? The most secure path, assuming a company has the expertise and budget, is to self-host the solution on its own hardware.
+
+To illustrate this point, I asked Gemini for an estimation of the costs associated with self-hosting a model like Qwen3-Coder. The results, which would be similar for other powerful models, highlight the significant investment required:
+
+|Tier Name|Target Qwen3-Coder Model & Capability|Key Hardware Components (Summary)|Estimated Server Build Cost (USD)|Estimated Monthly Rental Cost (USD)|
+|---|---|---|---|---|
+|**Tier 1: Entry-Level**|30B Model (Dynamic 4-bit quant) - Decent inference speeds|16-24GB VRAM GPU, 32-64GB RAM|$1,160 - $1,800|$250 - $600|
+|**Tier 2: Mid-Range**|30B Model (Full Precision) / Entry 480B Model (Limited)|24GB+ VRAM GPU (or 2x Mid-VRAM), 64-128GB RAM|$2,160 - $5,350|$800 - $2,500|
+|**Tier 3: High-End**|480B Model (Optimal Performance)|48GB+ Professional GPU (or Multiple 24GB GPUs), 192-256GB+ RAM|$7,000 - $16,000+|$3,500 - $18,000+|
+
+It is crucial to remember that a self-hosted server also incurs ongoing costs for electricity, cooling, and maintenance. However, for large corporations that already possess the infrastructure for computation or storage, a private server is a very real and viable solution. The more employees who use the tool, the more the return on investment grows.
+
+Companies must begin to see these tools not as a luxury add-on, but as a critical investment for supercharging their teams' efficiency. While some larger companies are already experimenting with private instances of general LLMs, it is far less common to see similar investments in dev-oriented models. This raises an important question: are they hesitant? Or are they simply waiting for others to lead the way?
+
+I believe it is our responsibility, as engineers, to articulate this value proposition to our leaders and managers. We must advocate for these solutions, explaining the immense gains in productivity and the fortified data security they provide.
+
+Ultimately, your company holds the key to this worldwide performance enhancement. If we fail to act or at least plan for this investment within the next three years, we risk wasting valuable time and falling behind.
+
+---
+
+As a software engineer, I see a huge gap in how companies are approaching AI coding tools. My team and I are dreaming of using them, but there's a big problem: the price and the data security.
+
+I've come to see these AIs as a hybrid of an intern and an assistant. They can do good software jobs, but more complex tasks need more information, much like an intern. They can also assist with writing documentation or fixing grammar, just like an assistant. The more time we spend with them, the more powerful they become.
+
+But nothing is perfect. In my view, we have two main problems to unlock their full potential: the price and the professional usage.
+
+For personal use, many free solutions exist, but they are limited by tokens, request counts, or performance. Paid plans are available, but the better they are, the more expensive they get. The price can range from **$10/user/month** for GitHub Copilot to **$200/user/month** for a model like Claude. While you can use free, open-source models with your own server or a MacBook with an M-series chip, they are often not the most powerful. It quickly becomes too expensive for non-professional use.
+
+For professional use, employees like me dream of having access to these tools for our projects. The major roadblock is data security and confidentiality. Your company doesn't want its codebase, client info, or any other sensitive data going to a third-party database or over the public internet. While enterprise/pro plans exist with data privacy guarantees, are we truly sure the data is safe? If a company has the staff and knowledge, the best solution is to self-host the model on its own hardware.
+
+I asked Gemini for an estimation of the costs to self-host a model like Qwen3-Coder. The results, which would be similar for other powerful models, are eye-opening:
+
+Here’s what a self-hosted server would cost:
+
+**Tier 1: 💻 Entry-Level**
+- Build Cost: **$1,160 - $1,800**
+- Rent: **$250 - $600/month**
+
+**Tier 2: 🚀 Mid-Range**
+- Build Cost: **$2,160 - $5,350**
+- Rent: **$800 - $2,500/month**
+
+**Tier 3: 🌟 High-End**
+- Build Cost: **$7,000 - $16,000+**
+- Rent: **$3,500 - $18,000+/month**
+
+It's important to remember that a self-hosted server, while offering a secure solution, has ongoing costs like electricity and maintenance. However, for large companies with existing infrastructure, this is a viable and powerful option. The return on investment grows exponentially with each employee who uses the tool.
+
+Companies must shift their perspective to see these AI tools not as a luxury, but as a critical investment in team efficiency and data security. It falls to us, as engineers, to articulate this value to our leaders and managers. We should advocate for these solutions by explaining the immense gains in productivity and the fortified data protection they provide.
+
+I encourage you to bring this topic up with your team to highlight the potential benefits and move the conversation forward.
