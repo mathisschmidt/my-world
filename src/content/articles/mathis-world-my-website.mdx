@@ -1,0 +1,47 @@
+---
+title: "Mathis World — My Website: How I Built It and What I Want to Do"
+author: "Mathis Schmidt"
+date: 2026-02-15
+tags: [website, astro, tailwind, devlog]
+---
+
+This site is my little corner of the web: a portfolio, a lab notebook, and a place to share ideas. I built it to be small, fast, and easy to maintain—so. I don't want to wrestle with a CMS, too complex to host it and use it.
+
+## Why I built this site
+
+I wanted a simple way to share projects, short essays, and occasional technical notes. I don’t plan to be a high-frequency blogger—maybe one article a month at most—so I didn’t want to overengineer the publishing pipeline.
+
+The goals were straightforward:
+
+- Lightweight and fast to load.
+- Minimal friction to publish new content.
+- A pleasant reading experience with a clean, modern aesthetic.
+- The ability to mix Markdown content with small React components when needed.
+
+With those constraints in mind I picked a stack that plays to those strengths.
+
+## The stack
+
+I used Astro + React + Tailwind. A few reasons:
+
+- Astro gives a content-first approach and excellent performance by default. Pages render fast and ship less JavaScript.
+- React handles the interactive pieces (small UI components or visualizations) without forcing React everywhere.
+- Tailwind makes styling fast and keeps the design consistent with utility classes.
+
+## Content workflow: write once, deploy fast
+
+My content lives as files in `src/content` as MDX. Creating a new article is intentionally simple:
+
+1. Create a new MDX file in with title, date, tags.
+2. Write the article.
+3. Commit and push.
+4. Redeploy with my CD pipeline.
+
+For now I use Portainer to manage deployments. The whole flow is intentionally low-friction and usable from any device, even my phone.
+
+## Deployment and hosting
+
+Easy, a simple Nginx image with the `astro build` output copied in and my Portnaire setup to handle deployments on my VPS.
+
+## Design inspirations
+I drew inspiration from this template: [Astro multilingual portfolio template by nicremo](https://github.com/nicremo/astro-multilingual-portfolio-template)
