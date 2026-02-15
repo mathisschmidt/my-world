@@ -1,11 +1,11 @@
 version: '3.8'
 
 services:
-  mywebsite:
+  myworld:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: myWebsite
+    container_name: myWorld
     ports:
       - "4321:8080"
     restart: unless-stopped
