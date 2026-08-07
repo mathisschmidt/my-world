@@ -33,8 +33,8 @@ export interface Skill {
 
 export const profile: Profile = {
   name: 'Mathis Schmidt',
-  title: 'Software Engineer',
-  bio: 'Just a curious guy who loves to code and solve problems. Let\'s talk about tech, if you make me discovering a new things i am paying the hot chocolate!',
+  title: 'Lead Software Engineer',
+  bio: 'Engineer at the intersection of software and hardware. Comfortable building from scratch and diving into low-level systems. Growing toward robotics and embedded software, one project at a time.',
   links: {
     github: 'https://github.com/mathisschmidt',
     linkedin: 'https://www.linkedin.com/in/mathis-schmidt-72694a165/',
@@ -44,69 +44,99 @@ export const profile: Profile = {
 
 export const education: Education[] = [
     {
-        degree: 'Engineer Training in Multimedia, Computer Science and Network',
-        institution: 'ENSSAT',
-        period: '2020 - 2023',
-        description: 'Engineering degree focusing on multimedia, computer science and network technologies. With the last year of the degree being a specialization in Artificial Intelligence and Data Science',
+        degree: 'Engineer\'s Degree — Multimedia, Computer Science and Network',
+        institution: 'ENSSAT — Lannion (22), France',
+        period: '2020 to 2023',
     },
     {
-        degree: 'Technological University Degree in Network and Telecommunication',
-        institution: 'University of Lannion',
-        period: '2018 - 2020',
-        description: 'Foundation in network infrastructure and telecommunications.',
+        degree: 'Technological University Degree — Network and Telecommunication',
+        institution: 'IUT Lannion — Lannion (22), France',
+        period: '2018 to 2020',
     },
 ];
 
 export const experience: Experience[] = [
-    // TODO: add ST experience
     {
-        title: 'Software Developer Apprentice',
-        company: 'Orange (Lannion, France)',
-        period: '2020 - 2023',
+        title: 'Lead Software Engineer',
+        company: 'STMicroelectronics, India — VIE Contract, R&D',
+        period: 'Sept 2024 to Present',
         description: [
-            'Working in team in charge of the improvement and maintenance of the Orange diagnostic application (used by technicians to perform diagnostics on customer\'s internet lines)',
-            'Create internal tools for the test team to facilitate the testing of the application',
-            'Update API point of the application',
-            'Do the formation of new apprentices and interns',
+            'Develop software and tools to test and qualify microchips (especially memory) for hardware engineers/phd. Technical referent, mentor for interns, and contact point for other teams adopting our tools.',
+            'genericMBIST generator — Built a Python code-generation tool producing complete MBIST hardware designs (Memory Built-In Self-Test). Combined templates maintained by hardware engineers, a memory-parameter database, and a complex rules engine to automate the generation of full hardware architectures. Now used as a reference by other teams building their own generators.',
+            'cellML — Co-designed (with a PhD researcher) a Python tool that uses ML prediction and simulation to generate CTM views (per-cell defect-detectability maps). Owned the full architecture; the researcher owned the ML side. Reduced full-technology CTM generation from months to hours.',
+            'Flow manager library — Authored a Python library to parallelize function execution with dependency graphs, task groups, and smart re-run avoidance. Used across team projects, including flows of 1000+ tasks running over multiple days. Shipped with a generic, customizable GUI so consumers don\'t have to build their own.',
+            'Pytest non-regression plugin — Co-developed (with a partner team) a pytest plugin to declare environment, expected results, comparison cleaning rules, and full test suites in a uniform way. Critical for hardware tools that produce large volumes of output files.',
+            'CI/CD pipelines — With an intern, built the team\'s complete Jenkins infrastructure (with pre-prod & prod server): automated unit tests, coverage, non-regression, deployment to internal servers, and application delivery.',
+            'Technical leadership — Managed 2 interns end-to-end. Technical referent for hardware-focused teams learning software by necessity — supporting them on scripts as well as full architectural planning for larger projects.',
+        ],
+    },
+    {
+        title: 'Support Technician — 2024 Olympic Games',
+        company: 'France',
+        period: 'July / August 2024',
+        description: [
+            'Installed and dismantled the full IT setup for the cross-country bike trial event. Supported the manager in coordinating and organising the on-site team.',
+        ],
+    },
+    {
+        title: 'Freelance & Entrepreneurship',
+        company: 'France / India',
+        period: 'Sept 2023 to June 2024',
+        description: [
+            'Explored entrepreneurship with mentorship from industry professionals while freelancing as a software developer.',
+            'Workspace manager (desktop app) — Built an Electron + AdonisJS desktop application to centralise project links (files, apps, web resources) and share them across a team. All-web-stack architecture for maintainability.',
+            'Hydroponics project (design) — Designed an eco-friendly hydroponics system intended for corporate gardens.',
+            'Entrepreneurship training — Completed a government-backed founder programme covering startup marketing and go-to-market planning.',
         ],
     },
     {
         title: 'Developer Internship',
-        company: 'Swill (Jaipur, India)',
-        period: '2021 (2 months)',
+        company: 'Swill, Jaipur, India',
+        period: '2 months',
         description: [
-            'Create a mobile application for a ERP application',
+            'Built a React Native mobile app to support inventory management inside an existing ERP. The app consumed the ERP\'s API so users could add, remove, and verify products and quantities directly from the warehouse floor.',
         ],
     },
     {
-        title: 'Service Technician Apprentice',
-        company: 'Orange (Lannion, France)',
-        period: '2019 - 2020 (1 school year)',
+        title: 'Software Developer Apprentice',
+        company: 'Orange, Lannion (22), France',
+        period: '2020 to 2023',
         description: [
-            'Service technician apprentice for private and corporate customers',
-            'Maintenance of internet lines (XDSL, fiber)',
+            'Joined the team owning Orange\'s main diagnostic application — used by field technicians to run tests on XDSL / fiber / modems and every component of an internet line. 3-year apprenticeship combining engineering school and full team membership.',
+            'Non-regression test framework (Java + Cucumber) — Designed and built the new automated NRT solution for the QA team. Core constraint: QA engineers were not developers, so test scenarios had to be writable in natural language. Built a Java library of reusable test steps, exposed via Cucumber, so testers wrote scenarios without touching Java. Also supported the DevOps team in plugging it into Jenkins pipelines.',
+            'Diagnostic ecosystem re-architecture — Represented the software team in a company-wide restructuring of the diagnostic architecture (multiple partner systems handling physical tests, user info, etc.). Worked alongside architects and software engineers across the ecosystem on the new global design, and led the migration of our application onto the new architecture.',
+            '6-month intern project (lead) — Wrote the product specification, planned milestones and tasks, then acted as technical referent and project manager throughout the internship.',
         ],
     },
 ];
 
 export const skills: Skill[] = [
-    { name: 'Java/Java EE/Spring', level: 85, category: 'technical' },
-    { name: 'TypeScript/JavaScript', level: 88, category: 'technical' },
-    { name: 'CI/CD', level: 60, category: 'technical' },
-    { name: 'Node.js', level: 80, category: 'technical' },
-    { name: 'React.js', level: 80, category: 'technical' },
-    { name: 'Angular', level: 60, category: 'technical' },
-    { name: 'Adonis.js', level: 60, category: 'technical' },
-    { name: 'Next.js', level: 40, category: 'technical' },
-    { name: 'React Native', level: 60, category: 'technical' },
-    { name: 'Python', level: 80, category: 'technical' },
-    { name: 'C/C#', level: 40, category: 'technical' },
-    { name: 'Database Management', level: 90, category: 'technical' },
+    // Programming
+    { name: 'Python, Java, C, C++', level: 90, category: 'technical' },
+    { name: 'TypeScript, JavaScript', level: 88, category: 'technical' },
+    { name: 'React.js, Next.js, Angular, React Native', level: 80, category: 'technical' },
+    { name: 'Node.js, NestJS, AdonisJS, Electron', level: 80, category: 'technical' },
 
-    { name: 'Team Spirit', level: 80, category: 'soft' },
-    { name: 'Management', level: 75, category: 'soft' },
-    { name: 'Curiosity', level: 100, category: 'soft' },
-    { name: 'Self-taught', level: 90, category: 'soft' },
-    { name: 'Mentor', level: 50, category: 'soft' },
+    // DevOps & Tools
+    { name: 'Jenkins (CI/CD pipelines)', level: 85, category: 'technical' },
+    { name: 'Docker, Git, GitLab, GitHub', level: 85, category: 'technical' },
+    { name: 'Linux, Self-hosted infrastructure', level: 80, category: 'technical' },
+    { name: 'Claude Code / Copilot', level: 85, category: 'technical' },
+
+    // Database & Data
+    { name: 'MySQL, YAML-based DB design', level: 85, category: 'technical' },
+    { name: 'Rules engines, Templating systems', level: 90, category: 'technical' },
+
+    // Domains
+    { name: 'Hardware/Software integration', level: 80, category: 'technical' },
+    { name: 'Memory testing (MBIST)', level: 85, category: 'technical' },
+    { name: 'Test automation, Non-regression', level: 90, category: 'technical' },
+    { name: 'Machine Learning', level: 60, category: 'technical' },
+
+    { name: 'Technical leadership', level: 85, category: 'soft' },
+    { name: 'Mentoring interns', level: 85, category: 'soft' },
     { name: 'Project management', level: 80, category: 'soft' },
+    { name: 'Cross-team collaboration', level: 85, category: 'soft' },
+    { name: 'Building from scratch', level: 90, category: 'soft' },
+    { name: 'Continuous learning', level: 95, category: 'soft' },
 ];
