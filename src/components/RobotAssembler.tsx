@@ -341,7 +341,7 @@ export default function RobotAssembler({ activeSkills }: RobotAssemblerProps) {
           <div className="bg-slate-800 rounded-lg p-3 border border-slate-600">
             <div className="text-sm text-cyan-400 mb-1">Assembling Skills...</div>
             <div className="text-xs text-slate-300 mb-2">
-              Current: {skill?.name} ({skill?.level}%)
+              Current: {skill?.name}
             </div>
             <div className="w-40 h-2 bg-slate-700 rounded-full overflow-hidden">
               <div 

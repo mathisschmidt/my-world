@@ -4,8 +4,18 @@ import ResumeSection from '../components/ResumeSection.tsx';
 import ExperienceTree from '../components/ExperienceTree.tsx';
 import StudentRobot from '../components/StudentRobot.tsx';
 import RobotAssembler from '../components/RobotAssembler.tsx';
-import { profile, education, experience, skills } from '../data/profile';
+import { profile, education, experience, skills, skillGroups } from '../data/profile';
 import React from "react";
+
+// Icon path per skill group, keyed by group title
+const groupIcons: Record<string, string> = {
+  'Programming': 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
+  'DevOps & Tools': 'M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01',
+  'Database & Data': 'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4',
+  'Domains': 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z',
+  'Leadership': 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+  'default': 'M13 10V3L4 14h7v7l9-11h-7z',
+};
 ---
 
 /*TODO: transform header to a little card on right of the nav and put nav on the left*/
@@ -217,57 +227,34 @@ import React from "react";
 
                 <!-- Skills Grid -->
                 <div class="grid md:grid-cols-2 gap-8 mt-16">
-                  <!-- Technical Skills -->
-                  <div class="bg-slate-800/20 rounded-xl p-6 border border-slate-700">
-                    <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
-                      <svg class="w-5 h-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                      </svg>
-                      Technical Arsenal
-                    </h3>
-                    <div class="space-y-4">
-                      {skills.filter(skill => skill.category === 'technical').map((skill, index) => (
-                        <div class="skill-item">
-                          <div class="flex justify-between mb-2">
-                            <span class="text-slate-300 font-medium">{skill.name}</span>
-                          </div>
-                          <div class="w-full bg-slate-700 rounded-full h-2">
-                            <div
-                              class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full skill-bar"
-                              style={`width: 0%`}
-                              data-width={skill.level}
-                            ></div>
-                          </div>
-                        </div>
-                      ))}
+                  {skillGroups.map((group) => (
+                    <div class={`bg-slate-800/20 rounded-xl p-6 border border-slate-700 ${group.category === 'soft' ? 'md:col-span-2' : ''}`}>
+                      <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
+                        <svg
+                          class={`w-5 h-5 mr-2 ${group.category === 'soft' ? 'text-purple-400' : 'text-cyan-400'}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={groupIcons[group.title] ?? groupIcons.default}></path>
+                        </svg>
+                        {group.title}
+                      </h3>
+                      <div class="flex flex-wrap gap-2">
+                        {group.items.map((item) => (
+                          <span
+                            class={`skill-chip px-3 py-1.5 rounded-full text-sm font-medium bg-slate-700/50 text-slate-300 border transition-colors duration-300 ${
+                              group.category === 'soft'
+                                ? 'border-purple-500/20 hover:border-purple-400/60 hover:text-purple-200'
+                                : 'border-cyan-500/20 hover:border-cyan-400/60 hover:text-cyan-200'
+                            }`}
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-
-                  <!-- Soft Skills -->
-                  <div class="bg-slate-800/20 rounded-xl p-6 border border-slate-700">
-                    <h3 class="text-xl font-semibold text-white mb-6 flex items-center">
-                      <svg class="w-5 h-5 text-purple-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                      </svg>
-                      Leadership Qualities
-                    </h3>
-                    <div class="space-y-4">
-                      {skills.filter(skill => skill.category === 'soft').map((skill, index) => (
-                        <div class="skill-item">
-                          <div class="flex justify-between mb-2">
-                            <span class="text-slate-300 font-medium">{skill.name}</span>
-                          </div>
-                          <div class="w-full bg-slate-700 rounded-full h-2">
-                            <div
-                              class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full skill-bar"
-                              style={`width: 0%`}
-                              data-width={skill.level}
-                            ></div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </ResumeSection>
@@ -311,18 +298,21 @@ import React from "react";
         activeBtn.classList.add('active');
       }
 
-      // Animate skill bars if showing skills section
+      // Reveal skill chips if showing skills section
       if (sectionId === 'skills') {
-        setTimeout(() => {
-          const skillBars = document.querySelectorAll('.skill-bar');
-          skillBars.forEach((bar, index) => {
-            setTimeout(() => {
-              const width = bar.getAttribute('data-width');
-              (bar as HTMLElement).style.width = `${width}%`;
-            }, index * 100);
-          });
-        }, 300);
+        revealSkillChips();
       }
+    }
+
+    function revealSkillChips() {
+      setTimeout(() => {
+        const chips = document.querySelectorAll('.skill-chip');
+        chips.forEach((chip, index) => {
+          setTimeout(() => {
+            chip.classList.add('is-visible');
+          }, index * 25);
+        });
+      }, 200);
     }
 
     navButtons.forEach(button => {
@@ -336,11 +326,10 @@ import React from "react";
       });
     });
 
-    // Initialize skill bars
-    const skillBars = document.querySelectorAll('.skill-bar');
-    skillBars.forEach(bar => {
-      (bar as HTMLElement).style.width = '0%';
-    });
+    // Reveal chips right away if the skills section is the one already open
+    if (document.getElementById('skills-section')?.classList.contains('active')) {
+      revealSkillChips();
+    }
   });
 </script>
 
@@ -356,14 +345,29 @@ import React from "react";
   .resume-section {
     @apply opacity-0 transform translate-y-4 absolute inset-0 pointer-events-none;
     transition: all 0.3s ease-in-out;
+    /* Clip hidden sections so their content doesn't inflate the page scroll height */
+    overflow: hidden;
   }
 
   .resume-section.active {
     @apply opacity-100 transform translate-y-0 relative pointer-events-auto;
+    overflow: visible;
   }
 
-  .skill-bar {
-    transition: width 0.8s ease-in-out;
+  .skill-chip {
+    @apply opacity-0 transform translate-y-2;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out, color 0.3s ease-out, border-color 0.3s ease-out;
+  }
+
+  .skill-chip.is-visible {
+    @apply opacity-100 transform translate-y-0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skill-chip {
+      @apply opacity-100 transform translate-y-0;
+      transition: none;
+    }
   }
 
   #resume-content {

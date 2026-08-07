@@ -27,8 +27,13 @@ export interface Experience {
 
 export interface Skill {
   name: string;
-  level: number;
   category: 'technical' | 'soft';
+}
+
+export interface SkillGroup {
+  title: string;
+  category: 'technical' | 'soft';
+  items: string[];
 }
 
 export const profile: Profile = {
@@ -110,33 +115,59 @@ export const experience: Experience[] = [
     },
 ];
 
-export const skills: Skill[] = [
-    // Programming
-    { name: 'Python, Java, C, C++', level: 90, category: 'technical' },
-    { name: 'TypeScript, JavaScript', level: 88, category: 'technical' },
-    { name: 'React.js, Next.js, Angular, React Native', level: 80, category: 'technical' },
-    { name: 'Node.js, NestJS, AdonisJS, Electron', level: 80, category: 'technical' },
-
-    // DevOps & Tools
-    { name: 'Jenkins (CI/CD pipelines)', level: 85, category: 'technical' },
-    { name: 'Docker, Git, GitLab, GitHub', level: 85, category: 'technical' },
-    { name: 'Linux, Self-hosted infrastructure', level: 80, category: 'technical' },
-    { name: 'Claude Code / Copilot', level: 85, category: 'technical' },
-
-    // Database & Data
-    { name: 'MySQL, YAML-based DB design', level: 85, category: 'technical' },
-    { name: 'Rules engines, Templating systems', level: 90, category: 'technical' },
-
-    // Domains
-    { name: 'Hardware/Software integration', level: 80, category: 'technical' },
-    { name: 'Memory testing (MBIST)', level: 85, category: 'technical' },
-    { name: 'Test automation, Non-regression', level: 90, category: 'technical' },
-    { name: 'Machine Learning', level: 60, category: 'technical' },
-
-    { name: 'Technical leadership', level: 85, category: 'soft' },
-    { name: 'Mentoring interns', level: 85, category: 'soft' },
-    { name: 'Project management', level: 80, category: 'soft' },
-    { name: 'Cross-team collaboration', level: 85, category: 'soft' },
-    { name: 'Building from scratch', level: 90, category: 'soft' },
-    { name: 'Continuous learning', level: 95, category: 'soft' },
+export const skillGroups: SkillGroup[] = [
+    {
+        title: 'Programming',
+        category: 'technical',
+        items: [
+            'Python', 'Java', 'C', 'C++',
+            'TypeScript', 'JavaScript',
+            'React.js', 'Next.js', 'Angular', 'React Native',
+            'Node.js', 'NestJS', 'AdonisJS', 'Electron',
+        ],
+    },
+    {
+        title: 'DevOps & Tools',
+        category: 'technical',
+        items: [
+            'Jenkins (CI/CD pipelines)',
+            'Docker', 'Git', 'GitLab', 'GitHub',
+            'Linux', 'Self-hosted infrastructure',
+            'Claude Code', 'Copilot',
+        ],
+    },
+    {
+        title: 'Database & Data',
+        category: 'technical',
+        items: [
+            'MySQL', 'YAML-based DB design',
+            'Rules engines', 'Templating systems',
+        ],
+    },
+    {
+        title: 'Domains',
+        category: 'technical',
+        items: [
+            'Hardware/Software integration',
+            'Memory testing (MBIST)',
+            'Test automation', 'Non-regression',
+            'Machine Learning',
+        ],
+    },
+    {
+        title: 'Leadership',
+        category: 'soft',
+        items: [
+            'Technical leadership',
+            'Mentoring interns',
+            'Project management',
+            'Cross-team collaboration',
+            'Building from scratch',
+            'Continuous learning',
+        ],
+    },
 ];
+
+export const skills: Skill[] = skillGroups.flatMap(group =>
+    group.items.map(name => ({ name, category: group.category })),
+);
