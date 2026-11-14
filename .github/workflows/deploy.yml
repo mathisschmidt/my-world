@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -42,6 +44,9 @@ jobs:
             
             # Pull latest changes
             git pull origin main
+
+            # Fetch the project submodules (articles import their markdown) at their latest commit
+            git submodule update --init --remote
             
             # Install dependencies
             npm ci
