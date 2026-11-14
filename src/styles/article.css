@@ -35,6 +35,12 @@
         @apply rounded-xl shadow-lg my-6 w-full h-auto;
     }
 
+    /* Status badges (shields.io...) from imported READMEs: small and inline, not full width */
+    .article-prose img[src*="shields.io"],
+    .article-prose img[src*="/badge"] {
+        @apply inline-block w-auto h-5 m-0.5 rounded-none shadow-none align-middle;
+    }
+
     .article-prose figure {
         @apply my-6;
     }
