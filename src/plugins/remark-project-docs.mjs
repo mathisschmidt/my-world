@@ -1,4 +1,4 @@
-// Remark plugin for markdown files that live in a project submodule (projects/<name>/).
+// Remark plugin for markdown files fetched from a project repository (projects/<name>/).
 // Those files are written for GitHub, so when they are rendered inside an article:
 //  - relative links/images are rewritten to point to the GitHub repository
 //    (images to raw.githubusercontent.com, links to github.com/.../blob/<branch>/),

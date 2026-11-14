@@ -12,14 +12,18 @@
     "tailwind"
   ],
   "scripts": {
+    "predev": "node scripts/fetch-projects.mjs",
     "dev": "astro dev",
+    "prestart": "node scripts/fetch-projects.mjs",
     "start": "astro dev",
+    "prebuild": "node scripts/fetch-projects.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "clean": "rm -rf dist .astro",
     "lint": "astro check",
-    "type-check": "astro check"
+    "type-check": "astro check",
+    "fetch-projects": "node scripts/fetch-projects.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.7",

@@ -47,8 +47,9 @@ A modern, responsive website built with Astro and TypeScript, featuring articles
 │   │   └── articles/
 │   │       └── [slug].astro
 │   └── styles/              # CSS files
-├── projects/                # Project repositories as git submodules (their markdown is
-│   └── technology_watch/    #   imported by articles, see "Project articles" below)
+├── projects/                # Markdown downloaded from project repositories (git-ignored,
+│                            #   see "Project articles" below)
+├── projects.config.mjs      # Which files to download from which repositories
 ├── public/                  # Static public assets
 ├── package.json             # Project dependencies and scripts
 ├── astro.config.mjs         # Astro configuration
@@ -75,8 +76,10 @@ npm install
 
 ## Project articles
 
-Some articles are built from the documentation of another repository instead of a copy of it.
-The repository is added as a git submodule in `projects/`, and the article imports its markdown:
+Some articles reuse the documentation of another repository instead of a copy of it.
+`projects.config.mjs` lists the repositories and the files needed, and
+`scripts/fetch-projects.mjs` downloads only those files into `projects/<name>/` (git-ignored)
+before every `npm run dev` and `npm run build`. The article then imports them:
 
 ```mdx
 import { Content as Readme } from '../../../projects/technology_watch/README.md';
@@ -84,21 +87,12 @@ import { Content as Readme } from '../../../projects/technology_watch/README.md'
 <Readme />
 ```
 
-`src/plugins/remark-project-docs.mjs` (configured in `astro.config.mjs`) rewrites the relative
-links and images of those files to GitHub and removes their `# Title`, since the article has one.
+`src/plugins/remark-project-docs.mjs` rewrites the relative links and images of those files to
+GitHub and removes their `# Title`, since the article has one. Each build uses the latest version
+of the files; if the download fails, the copy from the previous fetch is used.
 
-Clone with the submodules:
-```bash
-git clone --recurse-submodules https://github.com/mathisschmidt/my-world.git
-```
-
-Pull the latest documentation of the projects:
-```bash
-git submodule update --init --remote
-```
-
-To add a project: `git submodule add -b main <repo-url> projects/<name>`, add it to `projects`
-in `astro.config.mjs`, then create an article in `src/content/articles/` that imports its markdown.
+To add a project: add it to `projects.config.mjs`, then create an article in
+`src/content/articles/` that imports its markdown.
 
 ## Usage
 

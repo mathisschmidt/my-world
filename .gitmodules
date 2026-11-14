@@ -1,4 +1,0 @@
-[submodule "projects/technology_watch"]
-	path = projects/technology_watch
-	url = https://github.com/mathisschmidt/technology_watch
-	branch = main
